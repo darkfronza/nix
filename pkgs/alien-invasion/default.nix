@@ -9,18 +9,18 @@
 let
   inherit (stdenvNoCC.hostPlatform) system;
   shaMap = {
-    x86_64-linux = "1lmh4a1wnn8rzi40b4l7s0wfxsxy7z84kiasz1zd46dm7w8gsng6";
-    aarch64-linux = "17mx9x3pqs6038600d4ckzwpapkq62f2xlgvia4252if5k0l3km0";
+    x86_64-linux = "15kq6pz61cxigp65vv28x87h004yr463y8r035jhdk5q3236902r";
+    aarch64-linux = "0jfxkpllbznm2mxizab98ii2d8pd558995g51d3s4w8f142vi80s";
   };
 
   urlMap = {
-    x86_64-linux = "https://github.com/darkfronza/alien-invasion/releases/download/v1.0.3/alien-invasion_1.0.3_linux_amd64.tar.gz";
-    aarch64-linux = "https://github.com/darkfronza/alien-invasion/releases/download/v1.0.3/alien-invasion_1.0.3_linux_arm64.tar.gz";
+    x86_64-linux = "https://github.com/darkfronza/alien-invasion/releases/download/v1.0.4/alien-invasion_1.0.4_linux_amd64.tar.gz";
+    aarch64-linux = "https://github.com/darkfronza/alien-invasion/releases/download/v1.0.4/alien-invasion_1.0.4_linux_arm64.tar.gz";
   };
 in
 stdenvNoCC.mkDerivation {
   pname = "alien-invasion";
-  version = "1.0.3";
+  version = "1.0.4";
   src = fetchurl {
     url = urlMap.${system};
     sha256 = shaMap.${system};
