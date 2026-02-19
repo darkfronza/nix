@@ -11,7 +11,7 @@ jobs:
   release-check:
     runs-on: ubuntu-latest
     outputs:
-      is-release: ${{ steps.condition-check.outputs.match != '' }}
+      is-release: ${{ steps.condition-check.outputs.match }}
     steps:
       - id: condition-check
         uses: actions-ecosystem/action-regex-match@v2
@@ -31,7 +31,7 @@ jobs:
           - nixpkgs=https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-25.11.tar.gz
     runs-on: ubuntu-latest
 
-    if: needs.release-check.outputs.is-release
+    if: needs.release-check.outputs.is-release != ''
     steps:
     - name: Checkout repository
       uses: actions/checkout@v5
@@ -60,7 +60,7 @@ jobs:
     needs: release-check
     runs-on: ubuntu-latest
 
-    if: needs.release-check.outputs.is-release
+    if: needs.release-check.outputs.is-release != ''
     steps:
     - name: Checkout repository
       uses: actions/checkout@v5
