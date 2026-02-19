@@ -70,6 +70,17 @@ jobs:
           -I $PWD
     - name: Build nix packages
       run: nix shell -f '<nixpkgs>' nix-build-uncached -c nix-build-uncached ci.nix -A cacheOutputs
+    - name: Make addpkg script executable
+      run: chmod +x ./addpkg.sh
+    - name: Execute addpkg.sh to update nix package's catalog
+      run: ./addpkg.sh alien-invasion
+    - name: Add and Commit default.nix
+      uses: EndBug/add-and-commit@v9 # Use the specific action
+      with:
+        add: 'default.nix' # Specifies the file(s) to add
+        message: 'Added new nix package version' # The commit message
+        author_name: 'github-actions[bot]'
+        author_email: 'github-actions[bot]@users.noreply.github.com'
     - name: Trigger NUR update
       # Don't replace <YOUR_REPO_NAME> here!
       if: ${{ matrix.nurRepo != '<YOUR_REPO_NAME>' }}
