@@ -15,6 +15,4 @@
   overlays = import ./overlays; # nixpkgs overlays
 
   # <package-list>: DO NOT REMOVE THIS LINE
-  alien-invasion_1.0.9 = pkgs.callPackage ./pkgs/alien-invasion/alien-invasion_1.0.9.nix { }
-  alien-invasion = pkgs.callPackage ./pkgs/alien-invasion/alien-invasion_1.0.9.nix { }
 }
