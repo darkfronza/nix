@@ -75,3 +75,5 @@ jobs:
         message: 'Added new nix package version' # The commit message
         author_name: 'github-actions[bot]'
         author_email: 'github-actions[bot]@users.noreply.github.com'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
