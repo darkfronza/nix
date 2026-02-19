@@ -62,8 +62,8 @@ jobs:
 
     if: needs.release-check.outputs.is-release
     steps:
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
+    - name: Checkout repository
+      uses: actions/checkout@v5
     - name: Make addpkg script executable
       run: chmod +x ./addpkg.sh
     - name: Execute addpkg.sh to update nix package's catalog
