@@ -6,7 +6,7 @@
 }
 
 pkg="$1"
-pkg_with_version=$(basename $(ls -1 pkgs/${pkg}/${pkg}_* | sort -r | head -n 1) .nix)
+pkg_with_version=$(basename $(ls -1 pkgs/${pkg}/${pkg}_* | sort -Vr | head -n 1) .nix)
 nix_entry="pkgs.callPackage ./pkgs/${pkg}/${pkg_with_version}.nix { }"
 
 unameOut="$(uname -s)"
