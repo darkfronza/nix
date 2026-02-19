@@ -57,7 +57,9 @@ jobs:
       run: nix shell -f '<nixpkgs>' nix-build-uncached -c nix-build-uncached ci.nix -A cacheOutputs
 
   add-pkg:
-    needs: release-check
+    permissions:
+      contents: write
+    needs: [release-check, tests]
     runs-on: ubuntu-latest
 
     if: needs.release-check.outputs.is-release != ''
