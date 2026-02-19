@@ -1,14 +1,13 @@
 #!/bin/bash
 
-[ $# -lt 2 ] && {
-    echo "usage: $0 <package_name> <version>"
+[ $# -lt 1 ] && {
+    echo "usage: $0 <package_name>"
     exit 1
 }
 
 pkg="$1"
-version="$2"
-pkg_with_version="${pkg}-${version}"
-nix_entry="pkgs.callPackage ./pkgs/${pkg}/${pkg}-${version}.nix { }"
+pkg_with_version=$(basename $(ls -1 pkgs/${pkg}/${pkg}_* | sort -r | head -n 1) .nix)
+nix_entry="pkgs.callPackage ./pkgs/${pkg}/${pkg_with_version}.nix { }"
 
 if ! grep -Eqs "${pkg_with_version}[[:blank:]]*=" default.nix; then
     echo "Adding new package entry to default.nix: pkg=$pkg  version=$version"
